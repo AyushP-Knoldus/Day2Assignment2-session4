@@ -7,7 +7,7 @@ import scala.util.{Failure, Success, Try}
 
 class Fibonacci {
   def nthElementFibonacci(number: Int): Int = {
-    //Exception handling is used to keep a check on number parameter,should handle the exception if negative number is passed
+    //Checking if number is negative and will throw the exception
     val result = Try {
       if (number < 0) {
         throw new IllegalArgumentException("Input number should be positive, found negative")
@@ -22,10 +22,10 @@ class Fibonacci {
           case _ => nthElementFibonacciHelper(nthElement - 1, currentElement, previousElement + currentElement)
         }
       }
-
+      //Calling recursive helper method with initial values 0 and 1 which are first and second element of series
       nthElementFibonacciHelper(number, 0, 1)
     }
-    //Calling recursive helper method with initial values 0 and 1 which are first and second element of series
+    //Handling exception if number is negative
     result match {
       case Success(value) => value
       case Failure(_) => -1
